@@ -284,9 +284,19 @@
     
     
     <p>很多時候我們會需要去串接第三方API，而我的習慣是，在真正去project call api之前，會用postman先測試過，那天心血來潮去試著call 政府的 open data ，用的是</p>
-<p>的api，</p>
+<p>全國街道路名: <a class="link" href="https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-000917-035"  target="_blank" rel="noopener"
+    >https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-000917-035</a> 的api，</p>
 <p>在postman的結果，很正常，</p>
-<p>![image-20220620112657719](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620112657719.png)</p>
+<p><img src="/image-20220620112657719.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220620112657719"
+	
+	
+></p>
 <p>於是我在我的React Project寫下fetch</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -299,7 +309,16 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>結果出現了錯誤訊息，上面寫的要在我們發送請求時加上 <code>mode:'no-cors'</code></p>
-<p>![image-20220620113142449](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620113142449.png)</p>
+<p><img src="/image-20220620113142449.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220620113142449"
+	
+	
+></p>
 <p>於是我加上了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -316,7 +335,16 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>But!!!!!人生就是這個BUT!!!!!!!</p>
-<p>![image-20220620113803587](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620113803587.png)</p>
+<p><img src="/image-20220620113803587.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220620113803587"
+	
+	
+></p>
 <p>可以看到我的 Response 裡面有個 <code>type ='opaque'</code>，關於這個錯誤大家可以上網查查，簡單來說，這是一個不透明的 response，我們是無法去取得裡面的資料，所以 body 裏面是 null，事實證明 <code>mode='no-cors'</code>  並不會讓事情成功的執行，</p>
 <p>我也有試過什麼setupProxy，依舊無法取得我想要的資料，</p>
 <p>就在想要放棄之際，我看到了一個東西，</p>
@@ -324,14 +352,50 @@
     >https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related?hl=en</a></p>
 <p>這是google chrome的一個插件，可以允許跨域請求，</p>
 <p>我將他安裝在我的瀏覽器，並按下左下角的toggle on ，</p>
-<p>![image-20220620120541439](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620120541439.png)</p>
+<p><img src="/image-20220620120541439.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220620120541439"
+	
+	
+></p>
 <p>然後回到我的程式碼，將 <code>mode:'no-cors'</code> 拿掉，再去到開發者工具看看這次回傳什麼，</p>
-<p>![image-20220620120935256](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620120935256.png)</p>
+<p><img src="/image-20220620120935256.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220620120935256"
+	
+	
+></p>
 <p>可以看到我的 Response type 已經是 cors，但body依舊怪怪的？沒有我要的data，</p>
 <p>接著我利用插件的 Test Cors來檢查我的瀏覽器到底可以接受怎樣的跨域請求，</p>
-<p>![image-20220620121125924](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620121125924.png)</p>
+<p><img src="/image-20220620121125924.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220620121125924"
+	
+	
+></p>
 <p>可以看到我的fetch通通都是被拒絕的，但是，XMLHttpRequest的 GET &amp; POST都是被允許的，</p>
-<p>![image-20220620121206852](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620121206852.png)</p>
+<p><img src="/image-20220620121206852.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220620121206852"
+	
+	
+></p>
 <p>於是我將我的 fetch 改成 axios，因為axios的請求格式就是 XMLHttpRequest，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -344,7 +408,16 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>讓我們再回到開發者工具看看，</p>
-<p>![image-20220620121608868](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620121608868.png)</p>
+<p><img src="/image-20220620121608868.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220620121608868"
+	
+	
+></p>
 <p>這次成功的回傳了api所提供的data!!!!!</p>
 <p>以上就是我在react project 直接去串接第三方api的辦法，供大家參考。</p>
 

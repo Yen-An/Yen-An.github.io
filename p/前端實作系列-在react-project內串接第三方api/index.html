@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-tw" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode-Palindrome Number'><title>LeetCode 實作解說系列-Palindrome Number</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在React Project內串接第三方API，以政府開放資料為例。'><title>前端實作系列-在React Project內串接第三方API</title>
 
-<link rel='canonical' href='https://Yen-An.github.io/p/leetcode-%E5%AF%A6%E4%BD%9C%E8%A7%A3%E8%AA%AA%E7%B3%BB%E5%88%97-palindrome-number/'>
+<link rel='canonical' href='https://Yen-An.github.io/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E5%9C%A8react-project%E5%85%A7%E4%B8%B2%E6%8E%A5%E7%AC%AC%E4%B8%89%E6%96%B9api/'>
 
-<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='LeetCode 實作解說系列-Palindrome Number'>
-<meta property='og:description' content='LeetCode-Palindrome Number'>
-<meta property='og:url' content='https://Yen-An.github.io/p/leetcode-%E5%AF%A6%E4%BD%9C%E8%A7%A3%E8%AA%AA%E7%B3%BB%E5%88%97-palindrome-number/'>
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='前端實作系列-在React Project內串接第三方API'>
+<meta property='og:description' content='在React Project內串接第三方API，以政府開放資料為例。'>
+<meta property='og:url' content='https://Yen-An.github.io/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E5%9C%A8react-project%E5%85%A7%E4%B8%B2%E6%8E%A5%E7%AC%AC%E4%B8%89%E6%96%B9api/'>
 <meta property='og:site_name' content='Yen&#39;s 實作筆記'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='LeetCode' /><meta property='article:published_time' content='2022-06-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-06-18T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="LeetCode 實作解說系列-Palindrome Number">
-<meta name="twitter:description" content="LeetCode-Palindrome Number">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='政府開放資料' /><meta property='article:tag' content='第三方API串接' /><meta property='article:published_time' content='2022-06-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-06-20T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="前端實作系列-在React Project內串接第三方API">
+<meta name="twitter:description" content="在React Project內串接第三方API，以政府開放資料為例。">
     </head>
     <body class="
     article-page
@@ -210,20 +210,20 @@
     
     <header class="article-category">
         
-            <a href="/categories/leetcode/" >
-                LeetCode
+            <a href="/categories/react/" >
+                React
             </a>
         
             <a href="/categories/javascript/" >
                 JavaScript
             </a>
         
-            <a href="/categories/leetcode-easy/" >
-                LeetCode Easy
+            <a href="/categories/api/" >
+                API
             </a>
         
-            <a href="/categories/%E8%A7%A3%E8%AA%AA/" >
-                解說
+            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C/" >
+                前端實作
             </a>
         
     </header>
@@ -231,12 +231,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/leetcode-%E5%AF%A6%E4%BD%9C%E8%A7%A3%E8%AA%AA%E7%B3%BB%E5%88%97-palindrome-number/">LeetCode 實作解說系列-Palindrome Number</a>
+            <a href="/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E5%9C%A8react-project%E5%85%A7%E4%B8%B2%E6%8E%A5%E7%AC%AC%E4%B8%89%E6%96%B9api/">前端實作系列-在React Project內串接第三方API</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            LeetCode-Palindrome Number
+            在React Project內串接第三方API，以政府開放資料為例。
         </h3>
         
     </div>
@@ -254,7 +254,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jun 18, 2022</time>
+                <time class="article-time--published">Jun 20, 2022</time>
             </div>
         
 
@@ -283,86 +283,71 @@
     <section class="article-content">
     
     
-    <h2 id="題目解說">題目解說</h2>
-<h3 id="原題目">原題目</h3>
-<p>Given an integer <code>x</code>, return <code>true</code> if <code>x</code> is palindrome integer.</p>
-<p>An integer is a <strong>palindrome</strong> when it reads the same backward as forward.</p>
-<p>For example, <code>121</code> is a palindrome while <code>123</code> is not.</p>
-<p><strong>Example 1:</strong></p>
+    <p>很多時候我們會需要去串接第三方API，而我的習慣是，在真正去project call api之前，會用postman先測試過，那天心血來潮去試著call 政府的 open data ，用的是</p>
+<p>的api，</p>
+<p>在postman的結果，很正常，</p>
+<p>![image-20220620112657719](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620112657719.png)</p>
+<p>於是我在我的React Project寫下fetch</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">  <span class="nx">fetch</span><span class="p">(</span><span class="s2">&#34;https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-000917-035&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>結果出現了錯誤訊息，上面寫的要在我們發送請求時加上 <code>mode:'no-cors'</code></p>
+<p>![image-20220620113142449](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620113142449.png)</p>
+<p>於是我加上了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Input: x = 121
-</span></span><span class="line"><span class="cl">Output: true
-</span></span><span class="line"><span class="cl">Explanation: 121 reads as 121 from left to right and from right to left
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">  <span class="nx">fetch</span><span class="p">(</span><span class="s2">&#34;https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-000917-035&#34;</span><span class="p">,{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mode</span><span class="o">:</span><span class="s1">&#39;no-cors&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>Example 2:</strong></p>
+</div><p>But!!!!!人生就是這個BUT!!!!!!!</p>
+<p>![image-20220620113803587](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620113803587.png)</p>
+<p>可以看到我的 Response 裡面有個 <code>type ='opaque'</code>，關於這個錯誤大家可以上網查查，簡單來說，這是一個不透明的 response，我們是無法去取得裡面的資料，所以 body 裏面是 null，事實證明 <code>mode='no-cors'</code>  並不會讓事情成功的執行，</p>
+<p>我也有試過什麼setupProxy，依舊無法取得我想要的資料，</p>
+<p>就在想要放棄之際，我看到了一個東西，</p>
+<p><a class="link" href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related?hl=en"  target="_blank" rel="noopener"
+    >https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related?hl=en</a></p>
+<p>這是google chrome的一個插件，可以允許跨域請求，</p>
+<p>我將他安裝在我的瀏覽器，並按下左下角的toggle on ，</p>
+<p>![image-20220620120541439](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620120541439.png)</p>
+<p>然後回到我的程式碼，將 <code>mode:'no-cors'</code> 拿掉，再去到開發者工具看看這次回傳什麼，</p>
+<p>![image-20220620120935256](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620120935256.png)</p>
+<p>可以看到我的 Response type 已經是 cors，但body依舊怪怪的？沒有我要的data，</p>
+<p>接著我利用插件的 Test Cors來檢查我的瀏覽器到底可以接受怎樣的跨域請求，</p>
+<p>![image-20220620121125924](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620121125924.png)</p>
+<p>可以看到我的fetch通通都是被拒絕的，但是，XMLHttpRequest的 GET &amp; POST都是被允許的，</p>
+<p>![image-20220620121206852](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620121206852.png)</p>
+<p>於是我將我的 fetch 改成 axios，因為axios的請求格式就是 XMLHttpRequest，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Input: x = -121
-</span></span><span class="line"><span class="cl">Output: false
-</span></span><span class="line"><span class="cl">Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">  <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-000917-035&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>Example 3:</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Input: x = 10
-</span></span><span class="line"><span class="cl">Output: false
-</span></span><span class="line"><span class="cl">Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>Constraints:</strong></p>
-<ul>
-<li><code>-231 &lt;= x &lt;= 231 - 1</code></li>
-</ul>
-<h3 id="翻譯">翻譯</h3>
-<p>給定一個整數x，回傳x是不是個相反數。舉例來說121相反為121，回傳true，-121相反為121-，回傳false。</p>
-<h2 id="解題策略">解題策略</h2>
-<p>將x轉為字串xstr，再將xstr利用reverse函數做字序的反轉，最後將x與xstr做一般相等比較。</p>
-<h2 id="js程式碼">JS程式碼</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">isPalindrome</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">xstr</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">xstr</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">x</span><span class="o">==</span><span class="nx">xstr</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div>
+</div><p>讓我們再回到開發者工具看看，</p>
+<p>![image-20220620121608868](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620121608868.png)</p>
+<p>這次成功的回傳了api所提供的data!!!!!</p>
+<p>以上就是我在react project 直接去串接第三方api的辦法，供大家參考。</p>
+
 </section>
 
 
@@ -370,7 +355,9 @@
     
     <section class="article-tags">
         
-            <a href="/tags/leetcode/">LeetCode</a>
+            <a href="/tags/%E6%94%BF%E5%BA%9C%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99/">政府開放資料</a>
+        
+            <a href="/tags/%E7%AC%AC%E4%B8%89%E6%96%B9api%E4%B8%B2%E6%8E%A5/">第三方API串接</a>
         
     </section>
 
@@ -404,6 +391,19 @@
             
                 
 <article class="">
+    <a href="/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E4%B8%A6%E9%A0%90%E8%A6%BD/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">前端實作系列-上傳圖片並預覽</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/leetcode-%E5%AF%A6%E4%BD%9C%E8%A7%A3%E8%AA%AA%E7%B3%BB%E5%88%97-longest-common-prefix/">
         
         
@@ -430,38 +430,25 @@
             
                 
 <article class="">
+    <a href="/p/leetcode-%E5%AF%A6%E4%BD%9C%E8%A7%A3%E8%AA%AA%E7%B3%BB%E5%88%97-palindrome-number/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 實作解說系列-Palindrome Number</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/leetcode-%E5%AF%A6%E4%BD%9C%E8%A7%A3%E8%AA%AA%E7%B3%BB%E5%88%97-two-sum/">
         
         
 
         <div class="article-details">
             <h2 class="article-title">LeetCode 實作解說系列-Two Sum</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E5%9C%A8react-project%E5%85%A7%E4%B8%B2%E6%8E%A5%E7%AC%AC%E4%B8%89%E6%96%B9api/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">前端實作系列-在React Project內串接第三方API</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E4%B8%A6%E9%A0%90%E8%A6%BD/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">前端實作系列-上傳圖片並預覽</h2>
         </div>
     </a>
 </article>
@@ -566,45 +553,7 @@
             >
 
             </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">目錄</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#題目解說">題目解說</a>
-      <ol>
-        <li><a href="#原題目">原題目</a></li>
-        <li><a href="#翻譯">翻譯</a></li>
-      </ol>
-    </li>
-    <li><a href="#解題策略">解題策略</a></li>
-    <li><a href="#js程式碼">JS程式碼</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
+    
 
         </div>
         <script 

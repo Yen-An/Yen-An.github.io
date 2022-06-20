@@ -6,7 +6,23 @@
         <description>Recent content in Tags on Yen&#39;s 實作筆記</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
-        <lastBuildDate>Sun, 19 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://Yen-An.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://Yen-An.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>政府開放資料</title>
+        <link>https://Yen-An.github.io/tags/%E6%94%BF%E5%BA%9C%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99/</link>
+        <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/tags/%E6%94%BF%E5%BA%9C%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>第三方API串接</title>
+        <link>https://Yen-An.github.io/tags/%E7%AC%AC%E4%B8%89%E6%96%B9api%E4%B8%B2%E6%8E%A5/</link>
+        <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/tags/%E7%AC%AC%E4%B8%89%E6%96%B9api%E4%B8%B2%E6%8E%A5/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>LeetCode</title>
         <link>https://Yen-An.github.io/tags/leetcode/</link>
         <pubDate>Sun, 19 Jun 2022 00:00:00 +0000</pubDate>

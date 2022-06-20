@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>API on Yen&#39;s 實作筆記</title>
+        <link>https://Yen-An.github.io/categories/api/</link>
+        <description>Recent content in API on Yen&#39;s 實作筆記</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://Yen-An.github.io/categories/api/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>前端實作系列-在React Project內串接第三方API</title>
+        <link>https://Yen-An.github.io/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E5%9C%A8react-project%E5%85%A7%E4%B8%B2%E6%8E%A5%E7%AC%AC%E4%B8%89%E6%96%B9api/</link>
+        <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E5%9C%A8react-project%E5%85%A7%E4%B8%B2%E6%8E%A5%E7%AC%AC%E4%B8%89%E6%96%B9api/</guid>
+        <description>&lt;p&gt;很多時候我們會需要去串接第三方API，而我的習慣是，在真正去project call api之前，會用postman先測試過，那天心血來潮去試著call 政府的 open data ，用的是&lt;/p&gt;
+&lt;p&gt;的api，&lt;/p&gt;
+&lt;p&gt;在postman的結果，很正常，&lt;/p&gt;
+&lt;p&gt;![image-20220620112657719](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620112657719.png)&lt;/p&gt;
+&lt;p&gt;於是我在我的React Project寫下fetch&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;fetch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-000917-035&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;結果出現了錯誤訊息，上面寫的要在我們發送請求時加上 &lt;code&gt;mode:&#39;no-cors&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;![image-20220620113142449](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620113142449.png)&lt;/p&gt;
+&lt;p&gt;於是我加上了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;fetch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-000917-035&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;mode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;no-cors&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;But!!!!!人生就是這個BUT!!!!!!!&lt;/p&gt;
+&lt;p&gt;![image-20220620113803587](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620113803587.png)&lt;/p&gt;
+&lt;p&gt;可以看到我的 Response 裡面有個 &lt;code&gt;type =&#39;opaque&#39;&lt;/code&gt;，關於這個錯誤大家可以上網查查，簡單來說，這是一個不透明的 response，我們是無法去取得裡面的資料，所以 body 裏面是 null，事實證明 &lt;code&gt;mode=&#39;no-cors&#39;&lt;/code&gt;  並不會讓事情成功的執行，&lt;/p&gt;
+&lt;p&gt;我也有試過什麼setupProxy，依舊無法取得我想要的資料，&lt;/p&gt;
+&lt;p&gt;就在想要放棄之際，我看到了一個東西，&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related?hl=en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related?hl=en&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;這是google chrome的一個插件，可以允許跨域請求，&lt;/p&gt;
+&lt;p&gt;我將他安裝在我的瀏覽器，並按下左下角的toggle on ，&lt;/p&gt;
+&lt;p&gt;![image-20220620120541439](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620120541439.png)&lt;/p&gt;
+&lt;p&gt;然後回到我的程式碼，將 &lt;code&gt;mode:&#39;no-cors&#39;&lt;/code&gt; 拿掉，再去到開發者工具看看這次回傳什麼，&lt;/p&gt;
+&lt;p&gt;![image-20220620120935256](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620120935256.png)&lt;/p&gt;
+&lt;p&gt;可以看到我的 Response type 已經是 cors，但body依舊怪怪的？沒有我要的data，&lt;/p&gt;
+&lt;p&gt;接著我利用插件的 Test Cors來檢查我的瀏覽器到底可以接受怎樣的跨域請求，&lt;/p&gt;
+&lt;p&gt;![image-20220620121125924](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620121125924.png)&lt;/p&gt;
+&lt;p&gt;可以看到我的fetch通通都是被拒絕的，但是，XMLHttpRequest的 GET &amp;amp; POST都是被允許的，&lt;/p&gt;
+&lt;p&gt;![image-20220620121206852](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620121206852.png)&lt;/p&gt;
+&lt;p&gt;於是我將我的 fetch 改成 axios，因為axios的請求格式就是 XMLHttpRequest，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;axios&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-000917-035&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;讓我們再回到開發者工具看看，&lt;/p&gt;
+&lt;p&gt;![image-20220620121608868](/Users/yanlaoan/Library/Application Support/typora-user-images/image-20220620121608868.png)&lt;/p&gt;
+&lt;p&gt;這次成功的回傳了api所提供的data!!!!!&lt;/p&gt;
+&lt;p&gt;以上就是我在react project 直接去串接第三方api的辦法，供大家參考。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

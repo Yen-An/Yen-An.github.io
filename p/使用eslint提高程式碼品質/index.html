@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在vscode中將ESLint、Prettier及Airbnb style guide結合。'><title>使用ESLint提高程式碼品質</title>
+
+<link rel='canonical' href='https://Yen-An.github.io/p/%E4%BD%BF%E7%94%A8eslint%E6%8F%90%E9%AB%98%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%93%81%E8%B3%AA/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='使用ESLint提高程式碼品質'>
+<meta property='og:description' content='在vscode中將ESLint、Prettier及Airbnb style guide結合。'>
+<meta property='og:url' content='https://Yen-An.github.io/p/%E4%BD%BF%E7%94%A8eslint%E6%8F%90%E9%AB%98%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%93%81%E8%B3%AA/'>
+<meta property='og:site_name' content='Yen&#39;s 實作筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='ESLint' /><meta property='article:tag' content='代碼風格' /><meta property='article:published_time' content='2022-08-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-08-08T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="使用ESLint提高程式碼品質">
+<meta name="twitter:description" content="在vscode中將ESLint、Prettier及Airbnb style guide結合。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/intro_hue0ef0ab69e3835dd49a7c0b27eebccdb_100633_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐾</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Yen&#39;s 實作筆記</a></h1>
+            <h2 class="site-description">記載了我寫程式的各種筆記</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Yen-An'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://yen-an.github.io/yenteeny.github.io/'
+                        target="_blank"
+                        title="Personal Page"
+                    >
+                        
+                        
+                            
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-square" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <line x1="12" y1="8" x2="12.01" y2="8" />
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <polyline points="11 12 12 12 12 16 13 16" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about-me/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/style-guide/" >
+                Style Guide
+            </a>
+        
+            <a href="/categories/javascript/" >
+                JavaScript
+            </a>
+        
+            <a href="/categories/eslint/" >
+                ESLint
+            </a>
+        
+            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C/" >
+                前端實作
+            </a>
+        
+            <a href="/categories/vscode/" >
+                VSCode
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E4%BD%BF%E7%94%A8eslint%E6%8F%90%E9%AB%98%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%93%81%E8%B3%AA/">使用ESLint提高程式碼品質</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            在vscode中將ESLint、Prettier及Airbnb style guide結合。
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 08, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 1 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="eslint可以做什麼">ESLint可以做什麼？</h2>
+<p>檢查出語法錯誤：變數未經宣告、function未經定義、括號不成對等等</p>
+<p>將code格式化：如何縮排、單引號或雙引號、分號、space及tab的大小等等</p>
+<p>刪除多餘的程式碼：提醒刪除import但沒有使用的模組、空的function、變數宣告但未使用等等</p>
+<p>確保遵循最佳實踐：使用嚴格相等 <code>===</code> 而非 <code>==</code></p>
+<h3 id="再搭配現在流行的-style-guide">再搭配現在流行的 style guide：</h3>
+<ul>
+<li><a class="link" href="https://github.com/google/styleguide"  target="_blank" rel="noopener"
+    >Google</a></li>
+<li><a class="link" href="https://github.com/airbnb/javascript"  target="_blank" rel="noopener"
+    >Airbnb</a></li>
+<li><a class="link" href="https://github.com/standard/standard"  target="_blank" rel="noopener"
+    >Standard</a></li>
+</ul>
+<p>透過以上兩種工具的結合，可以確保自己的程式碼與團隊遵循的規則相符，</p>
+<p>一旦通過ESLint的代碼檢查，表示程式碼品質在一定的水準內。</p>
+<h2 id="在專案中引入eslint套件">在專案中引入ESLint套件</h2>
+<p>以下將會解說如何將vscode內的延伸模組Prettier與ESLint + Airbnb style guide做結合，</p>
+<p>目標是禁用ESLint的格式規則，因為我們只需要用他來檢查語法錯誤，</p>
+<p>並用Prettier格式化程式碼。</p>
+<p>在開始之前，記得要先安裝 <a class="link" href="https://github.com/npm/cli"  target="_blank" rel="noopener"
+    >npm</a> 及 <a class="link" href="https://github.com/zkat/npx"  target="_blank" rel="noopener"
+    >npx</a>。</p>
+<h2 id="配置方法">配置方法</h2>
+<ol>
+<li>
+<p>下載VScode的  <a class="link" href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint"  target="_blank" rel="noopener"
+    >ESLint</a> 及 <a class="link" href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"  target="_blank" rel="noopener"
+    >Prettier</a> 延伸模組</p>
+</li>
+<li>
+<p>在我們的專案根目錄中安裝 ESLint 及 Prettier 套件</p>
+<p><code>npm install -D eslint prettier</code></p>
+</li>
+<li>
+<p>安裝 <a class="link" href="https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb"  target="_blank" rel="noopener"
+    >Airbnb style guide</a></p>
+<p><code>npx install-peerdeps --dev eslint-config-airbnb</code></p>
+</li>
+<li>
+<p>安裝 <a class="link" href="https://github.com/prettier/eslint-config-prettier"  target="_blank" rel="noopener"
+    >eslint-config-prettier</a>（禁用ESLint格式化）</p>
+<p><code>npm install --save-dev eslint-config-prettier</code></p>
+</li>
+<li>
+<p>安裝 <a class="link" href="https://github.com/prettier/eslint-plugin-prettier"  target="_blank" rel="noopener"
+    >eslint-plugin-prettier</a>（允許ESLint在我們寫程式時顯示格式錯誤）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">npm install --save-dev eslint-plugin-prettier
+</span></span><span class="line"><span class="cl">npm install --save-dev --save-exact prettier
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在專案根目錄建立檔案 .eslintrc ，內容如下：</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;extends&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;airbnb&#34;</span><span class="p">,</span> <span class="s2">&#34;prettier&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;plugins&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;prettier&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;prettier/prettier&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;error&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最後，在vscode內設定格式化的工具為Prettier就好了，</p>
+<p>設定的方式，可以在撰寫程式碼的地方，按右鍵&raquo;格式化文件，</p>
+<p>這時候vscode會跳出你要選擇什麼延伸模組去格式化，</p>
+<p>在這邊選擇 Prettier 即可。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/eslint/">ESLint</a>
+        
+            <a href="/tags/%E4%BB%A3%E7%A2%BC%E9%A2%A8%E6%A0%BC/">代碼風格</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相關文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E5%9C%A8react-project%E5%85%A7%E4%B8%B2%E6%8E%A5%E7%AC%AC%E4%B8%89%E6%96%B9api/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">前端實作系列-在React Project內串接第三方API</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C%E7%B3%BB%E5%88%97-%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E4%B8%A6%E9%A0%90%E8%A6%BD/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">前端實作系列-上傳圖片並預覽</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/leetcode-%E5%AF%A6%E4%BD%9C%E8%A7%A3%E8%AA%AA%E7%B3%BB%E5%88%97-longest-common-prefix/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 實作解說系列-Longest Common Prefix</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/leetcode-%E5%AF%A6%E4%BD%9C%E8%A7%A3%E8%AA%AA%E7%B3%BB%E5%88%97-roman-to-integer/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 實作解說系列-Roman to Integer</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/leetcode-%E5%AF%A6%E4%BD%9C%E8%A7%A3%E8%AA%AA%E7%B3%BB%E5%88%97-palindrome-number/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 實作解說系列-Palindrome Number</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2022 Yen&#39;s 實作筆記
+    </section>
+    
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#eslint可以做什麼">ESLint可以做什麼？</a>
+      <ol>
+        <li><a href="#再搭配現在流行的-style-guide">再搭配現在流行的 style guide：</a></li>
+      </ol>
+    </li>
+    <li><a href="#在專案中引入eslint套件">在專案中引入ESLint套件</a></li>
+    <li><a href="#配置方法">配置方法</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

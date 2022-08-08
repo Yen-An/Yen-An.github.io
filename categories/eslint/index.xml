@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>ESLint on Yen&#39;s 實作筆記</title>
+        <link>https://Yen-An.github.io/categories/eslint/</link>
+        <description>Recent content in ESLint on Yen&#39;s 實作筆記</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <lastBuildDate>Mon, 08 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://Yen-An.github.io/categories/eslint/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>使用ESLint提高程式碼品質</title>
+        <link>https://Yen-An.github.io/p/%E4%BD%BF%E7%94%A8eslint%E6%8F%90%E9%AB%98%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%93%81%E8%B3%AA/</link>
+        <pubDate>Mon, 08 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/p/%E4%BD%BF%E7%94%A8eslint%E6%8F%90%E9%AB%98%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%93%81%E8%B3%AA/</guid>
+        <description>&lt;h2 id=&#34;eslint可以做什麼&#34;&gt;ESLint可以做什麼？&lt;/h2&gt;
+&lt;p&gt;檢查出語法錯誤：變數未經宣告、function未經定義、括號不成對等等&lt;/p&gt;
+&lt;p&gt;將code格式化：如何縮排、單引號或雙引號、分號、space及tab的大小等等&lt;/p&gt;
+&lt;p&gt;刪除多餘的程式碼：提醒刪除import但沒有使用的模組、空的function、變數宣告但未使用等等&lt;/p&gt;
+&lt;p&gt;確保遵循最佳實踐：使用嚴格相等 &lt;code&gt;===&lt;/code&gt; 而非 &lt;code&gt;==&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;再搭配現在流行的-style-guide&#34;&gt;再搭配現在流行的 style guide：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/google/styleguide&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Google&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/airbnb/javascript&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Airbnb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/standard/standard&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Standard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;透過以上兩種工具的結合，可以確保自己的程式碼與團隊遵循的規則相符，&lt;/p&gt;
+&lt;p&gt;一旦通過ESLint的代碼檢查，表示程式碼品質在一定的水準內。&lt;/p&gt;
+&lt;h2 id=&#34;在專案中引入eslint套件&#34;&gt;在專案中引入ESLint套件&lt;/h2&gt;
+&lt;p&gt;以下將會解說如何將vscode內的延伸模組Prettier與ESLint + Airbnb style guide做結合，&lt;/p&gt;
+&lt;p&gt;目標是禁用ESLint的格式規則，因為我們只需要用他來檢查語法錯誤，&lt;/p&gt;
+&lt;p&gt;並用Prettier格式化程式碼。&lt;/p&gt;
+&lt;p&gt;在開始之前，記得要先安裝 &lt;a class=&#34;link&#34; href=&#34;https://github.com/npm/cli&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;npm&lt;/a&gt; 及 &lt;a class=&#34;link&#34; href=&#34;https://github.com/zkat/npx&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;npx&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;配置方法&#34;&gt;配置方法&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;下載VScode的  &lt;a class=&#34;link&#34; href=&#34;https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ESLint&lt;/a&gt; 及 &lt;a class=&#34;link&#34; href=&#34;https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Prettier&lt;/a&gt; 延伸模組&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在我們的專案根目錄中安裝 ESLint 及 Prettier 套件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;npm install -D eslint prettier&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安裝 &lt;a class=&#34;link&#34; href=&#34;https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Airbnb style guide&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;npx install-peerdeps --dev eslint-config-airbnb&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安裝 &lt;a class=&#34;link&#34; href=&#34;https://github.com/prettier/eslint-config-prettier&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;eslint-config-prettier&lt;/a&gt;（禁用ESLint格式化）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;npm install --save-dev eslint-config-prettier&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安裝 &lt;a class=&#34;link&#34; href=&#34;https://github.com/prettier/eslint-plugin-prettier&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;eslint-plugin-prettier&lt;/a&gt;（允許ESLint在我們寫程式時顯示格式錯誤）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install --save-dev eslint-plugin-prettier
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install --save-dev --save-exact prettier
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在專案根目錄建立檔案 .eslintrc ，內容如下：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;extends&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;airbnb&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;prettier&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;plugins&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;prettier&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;rules&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;prettier/prettier&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;最後，在vscode內設定格式化的工具為Prettier就好了，&lt;/p&gt;
+&lt;p&gt;設定的方式，可以在撰寫程式碼的地方，按右鍵&amp;raquo;格式化文件，&lt;/p&gt;
+&lt;p&gt;這時候vscode會跳出你要選擇什麼延伸模組去格式化，&lt;/p&gt;
+&lt;p&gt;在這邊選擇 Prettier 即可。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

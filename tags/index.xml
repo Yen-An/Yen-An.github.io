@@ -6,7 +6,23 @@
         <description>Recent content in Tags on Yen&#39;s 實作筆記</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
-        <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://Yen-An.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 08 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://Yen-An.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ESLint</title>
+        <link>https://Yen-An.github.io/tags/eslint/</link>
+        <pubDate>Mon, 08 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/tags/eslint/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>代碼風格</title>
+        <link>https://Yen-An.github.io/tags/%E4%BB%A3%E7%A2%BC%E9%A2%A8%E6%A0%BC/</link>
+        <pubDate>Mon, 08 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/tags/%E4%BB%A3%E7%A2%BC%E9%A2%A8%E6%A0%BC/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>政府開放資料</title>
         <link>https://Yen-An.github.io/tags/%E6%94%BF%E5%BA%9C%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99/</link>
         <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>

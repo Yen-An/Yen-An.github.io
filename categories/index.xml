@@ -6,7 +6,47 @@
         <description>Recent content in Categories on Yen&#39;s 實作筆記</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
-        <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://Yen-An.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 08 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://Yen-An.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ESLint</title>
+        <link>https://Yen-An.github.io/categories/eslint/</link>
+        <pubDate>Mon, 08 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/categories/eslint/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>JavaScript</title>
+        <link>https://Yen-An.github.io/categories/javascript/</link>
+        <pubDate>Mon, 08 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/categories/javascript/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Style Guide</title>
+        <link>https://Yen-An.github.io/categories/style-guide/</link>
+        <pubDate>Mon, 08 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/categories/style-guide/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>VSCode</title>
+        <link>https://Yen-An.github.io/categories/vscode/</link>
+        <pubDate>Mon, 08 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/categories/vscode/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>前端實作</title>
+        <link>https://Yen-An.github.io/categories/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C/</link>
+        <pubDate>Mon, 08 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yen-An.github.io/categories/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>API</title>
         <link>https://Yen-An.github.io/categories/api/</link>
         <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
@@ -15,27 +55,11 @@
         <description></description>
         </item>
         <item>
-        <title>JavaScript</title>
-        <link>https://Yen-An.github.io/categories/javascript/</link>
-        <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://Yen-An.github.io/categories/javascript/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>React</title>
         <link>https://Yen-An.github.io/categories/react/</link>
         <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>https://Yen-An.github.io/categories/react/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>前端實作</title>
-        <link>https://Yen-An.github.io/categories/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C/</link>
-        <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://Yen-An.github.io/categories/%E5%89%8D%E7%AB%AF%E5%AF%A6%E4%BD%9C/</guid>
         <description></description>
         </item>
         <item>
